@@ -1,0 +1,11 @@
+[project]
+name="quant-business"
+version="1.0.0"
+description="A business application for quantitative analysis"
+dependencies=[
+    "flask"
+]
+
+[build-system]
+requires = ["flit_core<4"]
+build-backend = "flit_core.buildapi"
