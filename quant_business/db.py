@@ -1,6 +1,13 @@
 import sqlite3
 import click
 from flask import current_app, g
+from requests import get
+
+def select_candlestick_by_date(date):
+    return get_db().execute(f'SELECT * FROM candlestick WHERE date = {date}').fetchall()
+
+def insert_candlestick(candlestick_sign):
+    get_db().executemany('INSERT INTO candlestick (symbol, date, candlestick_sign) VALUES (?, ?, ?)', candlestick_sign)
 
 def get_db():
     if 'db' not in g:

@@ -11,6 +11,9 @@ def create_app():
         os.makedirs(app.instance_path)
     except OSError:
         pass
+    
+    from . import candlestick
+    app.register_blueprint(candlestick.cdbp)
 
     from . import db
     db.init_app(app)
