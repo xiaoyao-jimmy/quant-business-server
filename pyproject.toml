@@ -3,7 +3,10 @@ name="quant-business"
 version="1.0.0"
 description="A business application for quantitative analysis"
 dependencies=[
-    "flask"
+    "flask",
+    "flask_jwt_extended",
+    "yfinance",
+    "cryptography"
 ]
 
 [build-system]
