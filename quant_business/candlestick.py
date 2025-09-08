@@ -1,5 +1,6 @@
 import json
 
+import yfinance as yf
 from flask import Blueprint, request
 from flask_jwt_extended import jwt_required
 
@@ -20,4 +21,20 @@ def report_candlestick_sign():
 @jwt_required()
 def get_candlestick_sign():
     rows = db.select_candlestick_by_date(request.args.get("date"))
-    return json.dumps([dict(row) for row in rows])
+    rows_dict = [dict(row) for row in rows]
+    yf.set_config(proxy='http://127.0.0.1:7890')
+    symbols = [row_dict['symbol'] for row_dict in rows_dict]
+    tickers = yf.Tickers(' '.join(symbols))
+    for row_dict in rows_dict:
+        row_dict['candlestick_draw'] = []
+        history = tickers.tickers[row_dict['symbol']].history(period='90d').to_dict(orient='index')
+        for key, value in history.items():
+            date_str = key.date().strftime('%Y-%m-%d')
+            value['Time'] = date_str
+            value['Open'] = round(value['Open'], 2)
+            value['Close'] = round(value['Close'], 2)
+            value['High'] = round(value['High'], 2)
+            value['Low'] = round(value['Low'], 2)
+            row_dict['candlestick_draw'].append(value)
+
+    return json.dumps(rows_dict)
