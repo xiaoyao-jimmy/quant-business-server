@@ -1,3 +1,4 @@
+import functools
 import json
 
 import yfinance as yf
@@ -20,7 +21,12 @@ def report_candlestick_sign():
 @cdbp.route('/get_candlestick_sign', methods=['GET'])
 @jwt_required()
 def get_candlestick_sign():
-    rows = db.select_candlestick_by_date(request.args.get("date"))
+    return get_candlestick_sign_date(request.args.get("date"))
+
+
+@functools.cache
+def get_candlestick_sign_date(date):
+    rows = db.select_candlestick_by_date(date)
     rows_dict = [dict(row) for row in rows]
     yf.set_config(proxy='http://127.0.0.1:7890')
     symbols = [row_dict['symbol'] for row_dict in rows_dict]
