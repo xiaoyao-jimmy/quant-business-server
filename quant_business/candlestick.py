@@ -18,6 +18,22 @@ def report_candlestick_sign():
     return {"status": "ok"}
 
 
+@cdbp.route('/report_candlestick_bullish_sign', methods=['POST'])
+@jwt_required()
+def report_candlestick_bullish_sign():
+    rows = [tuple(sign_dict.values()) for sign_dict in request.json]
+    db.insert_bullish_candlestick(rows)
+    return {"status": "ok"}
+
+
+@cdbp.route('/report_candlestick_bearish_sign', methods=['POST'])
+@jwt_required()
+def report_candlestick_bearish_sign():
+    rows = [tuple(sign_dict.values()) for sign_dict in request.json]
+    db.insert_bearish_candlestick(rows)
+    return {"status": "ok"}
+
+
 @cdbp.route('/get_candlestick_sign', methods=['GET'])
 @jwt_required()
 def get_candlestick_sign():
