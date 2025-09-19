@@ -9,17 +9,17 @@ def select_candlestick_by_date(date):
 
 
 def insert_candlestick(candlestick_sign):
-    get_db().executemany('INSERT INTO candlestick (symbol, date, candlestick_sign) VALUES (?, ?, ?)', candlestick_sign)
+    get_db().executemany('INSERT INTO candlestick (symbol, date, candlestick_sign) VALUES (?, ?, ?) ON CONFLICT(symbol, date) DO UPDATE SET candlestick_sign = excluded.candlestick_sign', candlestick_sign)
     get_db().commit()
 
 
 def insert_bullish_candlestick(candlestick_bullish_sign):
-    get_db().executemany('INSERT INTO candlestick (symbol, date, candlestick_sign, candlestick_bullish_sign) VALUES (?, ?, " ", ?) ON CONFLICT(symbol, date) DO UPDATE SET candlestick_bullish_sign = excluded.candlestick_bullish_sign', candlestick_bullish_sign)
+    get_db().executemany('INSERT INTO candlestick (symbol, date, candlestick_bullish_sign) VALUES (?, ?, ?) ON CONFLICT(symbol, date) DO UPDATE SET candlestick_bullish_sign = excluded.candlestick_bullish_sign', candlestick_bullish_sign)
     get_db().commit()
 
 
 def insert_bearish_candlestick(candlestick_bearish_sign):
-    get_db().executemany('INSERT INTO candlestick (symbol, date, candlestick_sign, candlestick_bearish_sign) VALUES (?, ?, " ", ?) ON CONFLICT(symbol, date) DO UPDATE SET candlestick_bearish_sign = excluded.candlestick_bearish_sign', candlestick_bearish_sign)
+    get_db().executemany('INSERT INTO candlestick (symbol, date, candlestick_bearish_sign) VALUES (?, ?, ?) ON CONFLICT(symbol, date) DO UPDATE SET candlestick_bearish_sign = excluded.candlestick_bearish_sign', candlestick_bearish_sign)
     get_db().commit()
 
 
