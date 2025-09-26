@@ -15,6 +15,7 @@ cdbp = Blueprint('candlestick', __name__)
 def report_candlestick_sign():
     rows = [tuple(sign_dict.values()) for sign_dict in request.json]
     db.insert_candlestick(rows)
+    get_candlestick_sign_date.cache_clear()
     return {"status": "ok"}
 
 
