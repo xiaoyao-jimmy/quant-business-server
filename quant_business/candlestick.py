@@ -1,6 +1,7 @@
 import functools
 import json
 
+from requests import get
 import yfinance as yf
 from flask import Blueprint, request
 from flask_jwt_extended import jwt_required
@@ -24,6 +25,7 @@ def report_candlestick_sign():
 def report_candlestick_bullish_sign():
     rows = [tuple(sign_dict.values()) for sign_dict in request.json]
     db.insert_bullish_candlestick(rows)
+    get_candlestick_sign_date.cache_clear()
     return {"status": "ok"}
 
 
@@ -32,6 +34,7 @@ def report_candlestick_bullish_sign():
 def report_candlestick_bearish_sign():
     rows = [tuple(sign_dict.values()) for sign_dict in request.json]
     db.insert_bearish_candlestick(rows)
+    get_candlestick_sign_date.cache_clear()
     return {"status": "ok"}
 
 
