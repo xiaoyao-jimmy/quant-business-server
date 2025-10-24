@@ -1,3 +1,33 @@
+DROP TABLE IF EXISTS security_reference;
+
+CREATE TABLE IF NOT EXISTS security_reference (
+  security_symbol TEXT PRIMARY KEY,
+  exchange_id TEXT,
+  currency_id TEXT,
+  ipo_date TEXT,
+  is_depositary_receipt TEXT,
+  depositary_receipt_ratio REAL,
+  security_type TEXT,
+  share_class_description TEXT,
+  share_class_status TEXT,
+  is_primary_share TEXT,
+  is_dividend_reinvest TEXT,
+  is_direct_invest TEXT,
+  investment_id TEXT,
+  ipo_offer_price REAL,
+  delisting_date TEXT,
+  delisting_reason TEXT,
+  mic TEXT,
+  common_share_sub_type TEXT,
+  ipo_offer_price_range TEXT,
+  exchange_sub_market_global_id TEXT,
+  conversion_ration REAL,
+  par_value REAL,
+  trading_status TEXT,
+  market_data_id TEXT,
+  date TEXT
+);
+
 DROP TABLE IF EXISTS company_reference;
 
 CREATE TABLE IF NOT EXISTS company_reference (
@@ -25,5 +55,6 @@ CREATE TABLE IF NOT EXISTS company_reference (
   report_style INTEGER,
   yearof_establishment TEXT,
   is_limited_liability_company TEXT,
-  expected_fiscal_year_end TEXT
+  expected_fiscal_year_end TEXT,
+  date TEXT
 );
