@@ -1,7 +1,26 @@
+DROP TABLE IF EXISTS financial_statements;
+
+CREATE TABLE IF NOT EXISTS financial_statements (
+  symbol TEXT,
+  period_ending_date TEXT,
+  recent_month TEXT,
+  file_date TEXT,
+  accession_number TEXT,
+  form_type TEXT,
+  period_auditor TEXT,
+  auditor_report_status TEXT,
+  inventory_valuation_method TEXT,
+  number_of_share_holders TEXT,
+  period_type TEXT,
+  total_risk_based_capital TEXT,
+  income_file_date TEXT,
+);
+
 DROP TABLE IF EXISTS security_reference;
 
 CREATE TABLE IF NOT EXISTS security_reference (
   security_symbol TEXT PRIMARY KEY,
+  symbol TEXT,
   exchange_id TEXT,
   currency_id TEXT,
   ipo_date TEXT,
@@ -32,6 +51,7 @@ DROP TABLE IF EXISTS company_reference;
 
 CREATE TABLE IF NOT EXISTS company_reference (
   company_id TEXT PRIMARY KEY,
+  symbol TEXT,
   short_name TEXT,
   standard_name TEXT,
   legal_name TEXT,
