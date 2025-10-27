@@ -1,3 +1,106 @@
+DROP TABLE IF EXISTS financial_valuation_ratios;
+
+CREATE TABLE IF EXISTS financial_valuation_ratios (
+    symbol TEXT,
+    recent_month TEXT,
+    
+);
+
+DROP TABLE IF EXISTS financial_earning_ratios;
+
+CREATE TABLE IF NOT EXISTS financial_earning_ratios (
+    symbol TEXT,
+    recent_month TEXT,
+    diluted_eps_growth,
+    diluted_cont_eps_growth,
+    dps_growth,
+    equity_per_share_growth,
+    regression_growthof_dividends_5_years,
+    fcf_per_share_growth,
+    book_value_per_share_growth,
+    normalized_diluted_eps_growth,
+    normalized_basic_eps_growth,
+    date TEXT
+);
+
+DROP TABLE IF EXISTS financial_operation_ratios;
+
+CREATE TABLE IF NOT EXISTS financial_operation_ratios (
+    symbol TEXT,
+    recent_month TEXT,
+    revenue_growth,
+    operation_income_growth,
+    net_income_growth,
+    net_income_cont_ops_growth,
+    cfo_growth,
+    fcf_growth,
+    operation_revenue_growth_3_month_avg,
+    gross_margin,
+    operation_margin,
+    pretax_margin,
+    net_margin,
+    tax_rate,
+    ebit_margin,
+    ebitda_margin,
+    sales_per_employee,
+    current_ratio,
+    quick_ratio,
+    long_term_debt_total_capital_ratio,
+    interest_coverage,
+    long_term_debt_equity_ratio,
+    financial_leverage,
+    total_debt_equity_ratio,
+    normalized_net_profit_margin,
+    days_in_sales,
+    days_in_inventory,
+    days_in_payment,
+    cash_conversion_cycle,
+    receivable_turnover,
+    inventory_turnover,
+    payment_turnover,
+    fix_assets_turonver,
+    assets_turnover,
+    roe,
+    roa,
+    roic,
+    fcf_sales_ratio,
+    fcf_net_income_ratio,
+    cap_ex_sales_ratio,
+    debt_to_assets,
+    common_equity_to_assets,
+    capital_expenditure_annual_5_yr_growth,
+    gross_profit_annual_5_yr_growth,
+    gross_margin_5_yr_avg,
+    post_tax_margin_5_yr_avg,
+    pre_tax_margin_5_yr_avg,
+    profit_margin_5_yr_avg,
+    roe_5_yr_avg,
+    roa_5_yr_avg,
+    avg_5_yrs_roic,
+    normalized_roic,
+    regression_growth_operating_revenue_5_years,
+    cash_ratio,
+    cashto_total_assets,
+    capital_expenditureto_ebitda,
+    fc_fto_cfo,
+    stockholders_equity_growth,
+    total_assets_growth,
+    total_liabilities_growth,
+    total_debt_equity_ratio_growth,
+    cash_ratio_growth,
+    ebitda_growth,
+    cash_flow_from_financing_growth,
+    cash_flow_from_investing_growth,
+    cap_ex_growth,
+    current_ratio_growth,
+    working_capital_turnover_ratio,
+    net_income_per_employee,
+    solvency_ratio,
+    expense_ratio,
+    loss_ratio,
+    date TEXT
+);
+
 DROP TABLE IF EXISTS financial_earning_reports;
 
 CREATE TABLE IF NOT EXISTS financial_earning_reports (
