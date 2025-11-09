@@ -1,4 +1,5 @@
 import sqlite3
+
 import click
 from flask import current_app, g
 
@@ -23,6 +24,16 @@ def insert_bearish_candlestick(candlestick_bearish_sign):
     get_db().commit()
 
 
+def insert_fundamental_sign(fundamental_sign):
+    get_db().executemany('INSERT INTO fundamental (symbol, date, fundamental_sign) VALUES (?, ?, ?) ON CONFLICT(symbol, date) DO UPDATE SET fundamental_sign = excluded.fundamental_sign', fundamental_sign)
+    get_db().commit()
+
+
+def select_fundamental_sign(date):
+    rows = get_db().execute(f'SELECT symbol, date, fundamental_sign FROM fundamental WHERE date = "{date}"').fetchall()
+    return rows
+
+
 def get_db():
     if 'db' not in g:
         g.db = sqlite3.connect(current_app.config['DATABASE'],
@@ -39,7 +50,7 @@ def close_db(e=None):
 
 def init_db():
     db = get_db()
-    with current_app.open_resource('schema.sql') as f:
+    with current_app.open_resource('json.sql') as f:
         db.executescript(f.read().decode('utf8'))
 
 

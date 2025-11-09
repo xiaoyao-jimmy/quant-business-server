@@ -21,6 +21,8 @@ def create_app():
 
     from . import candlestick
     app.register_blueprint(candlestick.cdbp, url_prefix='/candlestick')
+    from . import fundamental
+    app.register_blueprint(fundamental.cdbp, url_prefix='/fundamental')
 
     from . import db
     db.init_app(app)

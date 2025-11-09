@@ -1,7 +1,6 @@
 import functools
 import json
 
-from requests import get
 import yfinance as yf
 from flask import Blueprint, request
 from flask_jwt_extended import jwt_required
